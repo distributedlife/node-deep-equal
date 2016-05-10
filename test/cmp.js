@@ -44,12 +44,12 @@ test('non-objects', function (t) {
 
 test('arguments class', function (t) {
     t.ok(equal(
-        (function(){return arguments})(1,2,3),
-        (function(){return arguments})(1,2,3),
+        (function(){return arguments;})(1,2,3),
+        (function(){return arguments;})(1,2,3),
         "compares arguments"
     ));
     t.notOk(equal(
-        (function(){return arguments})(1,2,3),
+        (function(){return arguments;})(1,2,3),
         [1,2,3],
         "differenciates array and arguments"
     ));
@@ -57,12 +57,12 @@ test('arguments class', function (t) {
 });
 
 test('test the arguments shim', function (t) {
-    t.ok(isArguments.supported((function(){return arguments})()));
+    t.ok(isArguments.supported((function(){return arguments;})()));
     t.notOk(isArguments.supported([1,2,3]));
-    
-    t.ok(isArguments.unsupported((function(){return arguments})()));
+
+    t.ok(isArguments.unsupported((function(){return arguments;})()));
     t.notOk(isArguments.unsupported([1,2,3]));
-    
+
     t.end();
 });
 
@@ -86,10 +86,10 @@ test('buffers', function (t) {
 test('booleans and arrays', function (t) {
     t.notOk(equal(true, []));
     t.end();
-})
+});
 
 test('null == undefined', function (t) {
-    t.ok(equal(null, undefined))
-    t.notOk(equal(null, undefined, { strict: true }))
-    t.end()
-})
+    t.ok(equal(null, undefined));
+    t.notOk(equal(null, undefined, { strict: true }));
+    t.end();
+});

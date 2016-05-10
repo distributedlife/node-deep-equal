@@ -2,7 +2,7 @@ var pSlice = Array.prototype.slice;
 var objectKeys = require('./lib/keys.js');
 var isArguments = require('./lib/is_arguments.js');
 
-var deepEqual = module.exports = function (actual, expected, opts) {
+function deepEqual (actual, expected, opts) {
   if (!opts) opts = {};
   // 7.1. All identical values are equivalent, as determined by ===.
   if (actual === expected) {
@@ -66,12 +66,9 @@ function objEquiv(a, b, opts) {
     }
     return true;
   }
-  try {
-    var ka = objectKeys(a),
-        kb = objectKeys(b);
-  } catch (e) {//happens when one is a string literal and the other isn't
-    return false;
-  }
+
+  var ka = objectKeys(a),
+      kb = objectKeys(b);
   // having the same number of owned properties (keys incorporates
   // hasOwnProperty)
   if (ka.length != kb.length)
@@ -92,3 +89,5 @@ function objEquiv(a, b, opts) {
   }
   return typeof a === typeof b;
 }
+
+module.exports = deepEqual;
